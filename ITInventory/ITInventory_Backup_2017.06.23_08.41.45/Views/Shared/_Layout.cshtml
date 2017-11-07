@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>@ViewBag.Title</title>
+        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    	<!--This CSS entry was added by the Telerik VS Extensions for compatibility reasons-->
+	<link href="@Url.Content("~/Content/kendo.compatibility.css")" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.common-fiori.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.fiori.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.dataviz.fiori.min.css" rel="stylesheet" type="text/css" />
+	@*<script src="https://kendo.cdn.telerik.com/2017.2.504/js/jquery.min.js"></script>*@
+    <script src="~/Scripts/jquery.kendo.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2017.2.504/js/angular.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2017.2.504/js/jszip.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2017.2.504/js/kendo.all.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2017.2.504/js/kendo.aspnetmvc.min.js"></script>
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+</head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("IT Inventory", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Order History", "Index", "OrderHistory")</li>
+                            <li>@Html.ActionLink("Vendors", "Index", "Vendor")</li>
+                            <li>@Html.ActionLink("Products", "Index", "Product")</li>
+                            <li>@Html.ActionLink("Allocate to Office", "Index", "Allocation")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+    </body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $("#menu").kendoMenu();
+    });
+</script>

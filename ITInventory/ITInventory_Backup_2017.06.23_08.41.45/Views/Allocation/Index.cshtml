@@ -1,0 +1,96 @@
+﻿@model IEnumerable<ITInventory.Models.AllocatedInventory>
+
+@{
+    ViewBag.Title = "Allocation";
+}
+
+<h2>Allocation History</h2>
+<p>
+    @Html.ActionLink("Allocate inventory to office", "Create")
+</p>
+@(Html.Kendo().Grid(Model)
+.Name("grid")
+.Columns(column =>
+    {
+        column.Bound(c => c.OfficeName);
+        column.Bound(c => c.ProductCount).Title("Amt Allocated");
+        column.Bound(c => c.ProductId);
+        column.Bound(c => c.ProductName);
+        column.Bound(c => c.LastEditDateTime).Title("Last Edited");
+        column.Template(@<text>@Html.ActionLink("Edit", "Edit", new { id = item.Id }) | @Html.ActionLink("Details", "Details", new { id = item.Id }) | @Html.ActionLink("Delete", "Delete", new { id = item.Id })</text>).Width(150);
+    })
+    .HtmlAttributes(new { style = "height: 550px;" })
+    .Scrollable()
+    .Groupable()
+    .Sortable()
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(5))
+
+)
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OfficeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManufacturerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VendorId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsSplit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEditDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEditUser)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OfficeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManufacturerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VendorId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsSplit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastEditDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastEditUser)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>*@

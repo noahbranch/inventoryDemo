@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "Home";
+<input type="text" id="productName" placeholder="Start typing product name to search" />
+@(Html.Kendo().Grid<ITInventory.Models.ProductViewModel>()
+.Name("grid")
+.Columns(column =>
+    {
+        column.Template(@<text></text>).ClientTemplate("<input type=\"checkbox\" id=\"#= ProductName #\" class=\"orderCheckbox\"/>").Width(40);
+        column.Template(@<text></text>).Title("Order Qty").ClientTemplate("<input type=\"number\" class=\"orderVal\", id=\"#=ProductName #\" style=\"width: 50px;\", value = #= DefaultOrderSize # />");
+        column.Bound(c => c.ProductName).HtmlAttributes(new { @class = "productName" }).Title("Product");
+        column.Bound(c => c.SellPrice).Title("Cost").Format("{0:c}");
+        column.Bound(c => c.StockLevel).Title("Stock");
+        column.Bound(c => c.ReorderThreshold).Title("Auto Reorder");
+    })
+        .HtmlAttributes(new { style = "height: 550px;" })
+        .Scrollable()
+        .Filterable()
+        .Groupable()
+        .Sortable()
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .ServerOperation(false)
+        .Model(model => model.Id(p => p.Id))
+        .Read(read => read.Action("Products_Read", "Home").Type(HttpVerbs.Get))
+        .PageSize(20))
+        .Pageable(pageable => pageable
+            .Refresh(true)
+            .PageSizes(true)
+            .PageSizes(new int[] { 10, 20, 100, 200 })
+            .ButtonCount(5))
+            )
+<p id="selected"></p>
+<input type="button" id="submit" value="Submit"/>
+using (Html.BeginForm("Create", "Home"))
+{
+<div id="orderList"></div>
+<input hidden="hidden" type="button" id="reset" value="Reset Order" />
+}
+}
+
+<input id="confirm" type="button" hidden="hidden" value="Confirm Order" />
+<script>
+
+    $("#productName").keyup(function () {
+        var selecteditem = $("#productName").val();
+        var kgrid = $("#grid").data("kendoGrid");
+        selecteditem = selecteditem.toUpperCase();
+        var selectedArray = selecteditem.split(" ");
+        if (selecteditem) {
+            var orfilter = { logic: "or", filters: [] };
+            var andfilter = { logic: "and", filters: [] };
+
+            $.each(selectedArray, function (i, v1) {
+                if (v1.trim() == "") {
+                }
+                else {
+                    $.each(selectedArray, function (i, v1) {
+                        if (v1.trim() == "") { }
+                        else {
+                            orfilter.filters.push({ field: "ProductName", operator: "contains", value: v1 });
+                            andfilter.filters.push(orfilter);
+                            orfilter = { logic: "or", filters: [] };
+                        }
+                    })
+                }
+            });
+            kgrid.dataSource.filter(andfilter);
+            
+        }
+        else {
+            kgrid.dataSource.filter({});
+        }
+    });
+    
+            //$("#search").click(function () {
+            //    grid = $("#grid").data("kendoGrid");
+            //    var ds = grid.dataSource;
+            //    ds.filter([
+            //        {
+            //            "field": "ProductName",
+            //            "operator": "contains",
+            //            "value": $("#productName").val()
+            //        }
+            //    ])
+            //})
+
+            function createOrderList(itemName, itemOrder) {
+                $("#orderList").append('<p><input style="width=50px;" id="'+ itemName +'" class="orderedItem" type="number" value="' + itemOrder + '" /> ' + itemName + ' - Email Vendor <input type="checkbox" name="emailVendor" /></p>')
+            }
+
+            var productNames = [];
+            var productId = [];
+            var stockLevel = [];
+
+
+            $(document).on('change', '.orderCheckbox', function () {
+
+                if (this.checked) {
+                    productNames.push(this.id);
+                    productId.push(this.parentNode.nextSibling.childNodes[0].value);
+                    stockLevel.push(this.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[0].value)
+                }
+                else {
+                    productNames.splice(productNames.indexOf(this.id), 1);
+                    productId.splice(productId.indexOf(this.parentNode.nextSibling.childNodes[0].value), 1);
+                    stockLevel.splic(stockLevel.indexOf(this.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[0].value))
+                }
+
+                $("#selected").text(productNames);
+            });
+            $("#submit").click(function () {
+                if (productNames.length == 0) {
+                    alert("You must select a product")
+                }
+                else {
+                    $("#orderList").show();
+                    $("#confirm").show();
+                    $("#reset").show();
+                    $(".orderCheckbox").attr("disabled", true);
+                    for (i = 0; i < productNames.length; i++) {
+                        createOrderList(productNames[i], productId[i])
+                    }
+                    $("#selected").text("");
+                    $("#productName").hide();
+                    $("#grid").fadeOut();
+                }
+            });
+
+            $(document).on('change', '.orderVal', function () {
+                var x = productNames.indexOf(this.id);
+                productId[x] = this.value;
+            });
+            $(document).on('change', '.orderedItem', function () {
+                var x = productNames.indexOf(this.id);
+                productId[x] = this.value;
+            });
+
+            $("#reset").click(function () {
+                productNames = [];
+                productId = [];
+                $("#orderList").text("");
+                $("#productName").show();
+                $("#confirm").hide()
+                $("#reset").hide()
+                $("#grid").fadeIn();
+                $(".orderCheckbox").attr("disabled", false);
+                $(".orderCheckbox").prop("checked", false);
+            });
+
+            $("#confirm").click(function () {
+
+                $.ajax({
+                    url: "@Url.Action("Create", "Home")",
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        productList: productNames,
+                        orderQty: productId
+                    }),
+                    success: function () {
+                        location.href = "@Url.Action("Index", "Home")"
+                    }
+                });
+            })
+</script>

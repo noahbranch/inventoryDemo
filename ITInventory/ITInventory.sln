@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITInventory", "ITInventory\ITInventory.csproj", "{19F5C6A5-0CA2-4140-96C2-923A6F53F8DD}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://teamfoundap01:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ITInventory\\ITInventory.csproj
+		SccProjectName1 = ITInventory
+		SccLocalPath1 = ITInventory
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19F5C6A5-0CA2-4140-96C2-923A6F53F8DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19F5C6A5-0CA2-4140-96C2-923A6F53F8DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19F5C6A5-0CA2-4140-96C2-923A6F53F8DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19F5C6A5-0CA2-4140-96C2-923A6F53F8DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

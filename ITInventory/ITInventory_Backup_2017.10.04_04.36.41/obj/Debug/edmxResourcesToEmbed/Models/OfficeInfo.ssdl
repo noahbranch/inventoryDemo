@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OfficeInfoLocalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OfficeInfoLocal.dbo.DDB_HDC_OFFICEINFO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DDB_HDC_OFFICEINFO">
+    <Key>
+      <PropertyRef Name="RSCDB" />
+    </Key>
+    <Property Name="RSCDB" Type="int" Nullable="false" />
+    <Property Name="EpicorID" Type="int" />
+    <Property Name="OfficeName" Type="varchar" MaxLength="60" />
+    <Property Name="FormalName" Type="varchar" MaxLength="60" />
+    <Property Name="Address" Type="varchar" MaxLength="60" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="21" />
+    <Property Name="Zip" Type="varchar" MaxLength="15" />
+    <Property Name="Phone" Type="varchar" MaxLength="17" />
+    <Property Name="Fax" Type="varchar" MaxLength="17" />
+    <Property Name="Corp" Type="varchar" MaxLength="50" />
+    <Property Name="SpeedDial" Type="smallint" />
+    <Property Name="OfficeType" Type="varchar" MaxLength="50" />
+    <Property Name="ConsID" Type="varchar" MaxLength="10" />
+    <Property Name="RA_ID" Type="varchar" MaxLength="10" />
+    <Property Name="VP" Type="varchar" MaxLength="10" />
+    <Property Name="PA" Type="varchar" MaxLength="10" />
+    <Property Name="OM" Type="varchar" MaxLength="10" />
+    <Property Name="NewRDO" Type="varchar" MaxLength="10" />
+    <Property Name="NewRA" Type="varchar" MaxLength="10" />
+    <Property Name="CA" Type="varchar" MaxLength="10" />
+    <Property Name="Accounting" Type="varchar" MaxLength="10" />
+    <Property Name="AP" Type="varchar" MaxLength="10" />
+    <Property Name="AR" Type="varchar" MaxLength="10" />
+    <Property Name="Mktg" Type="varchar" MaxLength="10" />
+    <Property Name="Payroll" Type="varchar" MaxLength="10" />
+    <Property Name="OpenDate" Type="datetime" />
+    <Property Name="NumDrs" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Press_Ganey" Type="varchar" MaxLength="50" />
+    <Property Name="ThriveGoal" Type="money" />
+    <Property Name="ChairsAvail" Type="int" />
+    <Property Name="PotentialChairs" Type="int" />
+    <Property Name="TFGroup" Type="varchar" MaxLength="50" />
+    <Property Name="ContMargin" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="OfficeClass" Type="varchar" MaxLength="50" />
+    <Property Name="G4" Type="varchar" MaxLength="60" />
+    <Property Name="G5Date" Type="datetime" />
+    <Property Name="XRay" Type="varchar" MaxLength="15" />
+    <Property Name="CloseDate" Type="datetime" />
+    <Property Name="ConversionDate" Type="datetime" />
+    <Property Name="DaysBfHDC" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="DaysAfterHDC" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="FirstMthDaysMissed" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="LastMthDaysMissed" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="MergedInto" Type="int" />
+    <Property Name="Biolase" Type="int" />
+    <Property Name="Accelerate" Type="datetime" />
+    <Property Name="Catapult" Type="datetime" />
+    <Property Name="SqFoot" Type="int" />
+    <Property Name="PrevName" Type="varchar" MaxLength="50" />
+    <Property Name="OfficeEMail" Type="varchar" MaxLength="100" />
+    <Property Name="SimpleDental" Type="bit" />
+    <Property Name="Fortiva" Type="bit" />
+    <Property Name="CareCreditID" Type="varchar" MaxLength="50" />
+    <Property Name="AllianceData" Type="varchar" MaxLength="50" />
+    <Property Name="FirstMonth" Type="datetime" />
+    <Property Name="OfficeURL" Type="varchar" MaxLength="100" />
+    <Property Name="SRDO" Type="varchar" MaxLength="10" />
+    <Property Name="Latitude" Type="decimal" Precision="9" Scale="6" />
+    <Property Name="Longitude" Type="decimal" Precision="9" Scale="6" />
+    <Property Name="FacebookURL" Type="varchar" MaxLength="100" />
+    <Property Name="CareCreditURL" Type="varchar" MaxLength="100" />
+    <Property Name="GooglePlusURL" Type="varchar" MaxLength="100" />
+    <Property Name="GoogleAnalytics" Type="varchar" MaxLength="50" />
+    <Property Name="DMA" Type="varchar" MaxLength="50" />
+    <Property Name="DrivingDirections" Type="varchar" MaxLength="500" />
+    <Property Name="TwoXTwoXTwo" Type="varchar" MaxLength="500" />
+    <Property Name="SrRA" Type="varchar" MaxLength="10" />
+    <Property Name="PCInfo" Type="varchar" MaxLength="100" />
+    <Property Name="NewSrRA" Type="varchar" MaxLength="10" />
+    <Property Name="NPPrediction" Type="int" />
+    <Property Name="PlannedHireDR" Type="int" />
+    <Property Name="PlannedHireHYG" Type="int" />
+    <Property Name="PlannedHireDA" Type="int" />
+    <Property Name="PlannedHireBA" Type="int" />
+    <Property Name="PlannedHireOM" Type="int" />
+    <Property Name="CurrentHireDRExp" Type="int" />
+    <Property Name="CurrentHireDRNewGrad" Type="int" />
+    <Property Name="CurrentHireDR" Type="int" />
+    <Property Name="CurrentHireHYG" Type="int" />
+    <Property Name="CurrentHireDA" Type="int" />
+    <Property Name="CurrentHireBA" Type="int" />
+    <Property Name="CurrentHireOM" Type="int" />
+    <Property Name="CallsFromNewPatients" Type="int" />
+    <Property Name="NewPatientsScheduled" Type="int" />
+    <Property Name="MarketingDetails" Type="varchar" MaxLength="500" />
+    <Property Name="MarketingDirectMail" Type="varchar" MaxLength="500" />
+    <Property Name="MondayOpen" Type="int" />
+    <Property Name="MondayClose" Type="int" />
+    <Property Name="TuesdayOpen" Type="int" />
+    <Property Name="TuesdayClose" Type="int" />
+    <Property Name="WednesdayOpen" Type="int" />
+    <Property Name="WednesdayClose" Type="int" />
+    <Property Name="ThursdayOpen" Type="int" />
+    <Property Name="ThursdayClose" Type="int" />
+    <Property Name="FridayOpen" Type="int" />
+    <Property Name="FridayClose" Type="int" />
+    <Property Name="SaturdayOpen" Type="int" />
+    <Property Name="SaturdayClose" Type="int" />
+    <Property Name="SundayOpen" Type="int" />
+    <Property Name="SundayClose" Type="int" />
+    <Property Name="ExtendedHours" Type="bit" />
+    <Property Name="TotalHoursMonFri" Type="float" />
+    <Property Name="TotalHoursMonSun" Type="float" />
+    <Property Name="DateOf1st40HourWeek" Type="datetime" />
+    <Property Name="ScheduleNotes" Type="varchar" MaxLength="500" />
+    <Property Name="AccessToCareCurrentWeek" Type="int" />
+    <Property Name="AccessToCarePriorWeek" Type="int" />
+    <Property Name="AccessToCare2WeeksPrior" Type="int" />
+    <Property Name="PracticeManagementSoftware" Type="varchar" MaxLength="100" />
+    <Property Name="SpecialtyEndo" Type="bit" />
+    <Property Name="SpecialtyOralSurgery" Type="bit" />
+    <Property Name="SpecialtyOrtho" Type="bit" />
+    <Property Name="SpecialtyPedo" Type="bit" />
+    <Property Name="SpecialtyPerio" Type="bit" />
+    <Property Name="PSRSupported" Type="bit" />
+    <Property Name="MarketingWebsite" Type="varchar" MaxLength="100" />
+    <Property Name="PSRSupervisor" Type="varchar" MaxLength="50" />
+    <Property Name="FullFeeFor59DollarIncentive" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PSROnlineAppointmentRequestStatus" Type="varchar" MaxLength="50" />
+    <Property Name="PSRProviderHours" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DMP5YearNetProductionGoal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DentrixCustomerNumber" Type="varchar" MaxLength="50" />
+    <Property Name="HealthGradesParticipant" Type="bit" />
+    <Property Name="CommunicationVendor" Type="varchar" MaxLength="200" />
+    <Property Name="ClinicalSuppliesRepresentative" Type="varchar" MaxLength="10" />
+    <Property Name="TeamRecruiter" Type="varchar" MaxLength="10" />
+    <Property Name="ProjectManager" Type="varchar" MaxLength="10" />
+    <Property Name="AffiliationProForma" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="AffiliationProFormaEBITDA" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MarketingRepManager" Type="varchar" MaxLength="10" />
+    <Property Name="RSA" Type="varchar" MaxLength="10" />
+    <Property Name="Exclusions" Type="int" />
+    <Property Name="IPAddress" Type="varchar" MaxLength="20" />
+    <Property Name="DMPEnrollment" Type="varchar" MaxLength="50" />
+    <Property Name="DNI" Type="varchar" MaxLength="10" />
+    <Property Name="DAT" Type="varchar" MaxLength="10" />
+    <Property Name="Landlord" Type="varchar" MaxLength="200" />
+    <Property Name="DXOneAPIStatus" Type="varchar" MaxLength="50" />
+    <Property Name="DXOneAPIGoLiveDate" Type="datetime" />
+    <Property Name="SeniorTeamRecruiter" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityContainer Name="OfficeInfoLocalModelStoreContainer">
+    <EntitySet Name="DDB_HDC_OFFICEINFO" EntityType="Self.DDB_HDC_OFFICEINFO" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[DDB_HDC_OFFICEINFO].[RSCDB] AS [RSCDB], 
+[DDB_HDC_OFFICEINFO].[EpicorID] AS [EpicorID], 
+[DDB_HDC_OFFICEINFO].[OfficeName] AS [OfficeName], 
+[DDB_HDC_OFFICEINFO].[FormalName] AS [FormalName], 
+[DDB_HDC_OFFICEINFO].[Address] AS [Address], 
+[DDB_HDC_OFFICEINFO].[City] AS [City], 
+[DDB_HDC_OFFICEINFO].[State] AS [State], 
+[DDB_HDC_OFFICEINFO].[Zip] AS [Zip], 
+[DDB_HDC_OFFICEINFO].[Phone] AS [Phone], 
+[DDB_HDC_OFFICEINFO].[Fax] AS [Fax], 
+[DDB_HDC_OFFICEINFO].[Corp] AS [Corp], 
+[DDB_HDC_OFFICEINFO].[SpeedDial] AS [SpeedDial], 
+[DDB_HDC_OFFICEINFO].[OfficeType] AS [OfficeType], 
+[DDB_HDC_OFFICEINFO].[ConsID] AS [ConsID], 
+[DDB_HDC_OFFICEINFO].[RA_ID] AS [RA_ID], 
+[DDB_HDC_OFFICEINFO].[VP] AS [VP], 
+[DDB_HDC_OFFICEINFO].[PA] AS [PA], 
+[DDB_HDC_OFFICEINFO].[OM] AS [OM], 
+[DDB_HDC_OFFICEINFO].[NewRDO] AS [NewRDO], 
+[DDB_HDC_OFFICEINFO].[NewRA] AS [NewRA], 
+[DDB_HDC_OFFICEINFO].[CA] AS [CA], 
+[DDB_HDC_OFFICEINFO].[Accounting] AS [Accounting], 
+[DDB_HDC_OFFICEINFO].[AP] AS [AP], 
+[DDB_HDC_OFFICEINFO].[AR] AS [AR], 
+[DDB_HDC_OFFICEINFO].[Mktg] AS [Mktg], 
+[DDB_HDC_OFFICEINFO].[Payroll] AS [Payroll], 
+[DDB_HDC_OFFICEINFO].[OpenDate] AS [OpenDate], 
+[DDB_HDC_OFFICEINFO].[NumDrs] AS [NumDrs], 
+[DDB_HDC_OFFICEINFO].[Press_Ganey] AS [Press_Ganey], 
+[DDB_HDC_OFFICEINFO].[ThriveGoal] AS [ThriveGoal], 
+[DDB_HDC_OFFICEINFO].[ChairsAvail] AS [ChairsAvail], 
+[DDB_HDC_OFFICEINFO].[PotentialChairs] AS [PotentialChairs], 
+[DDB_HDC_OFFICEINFO].[TFGroup] AS [TFGroup], 
+[DDB_HDC_OFFICEINFO].[ContMargin] AS [ContMargin], 
+[DDB_HDC_OFFICEINFO].[OfficeClass] AS [OfficeClass], 
+[DDB_HDC_OFFICEINFO].[G4] AS [G4], 
+[DDB_HDC_OFFICEINFO].[G5Date] AS [G5Date], 
+[DDB_HDC_OFFICEINFO].[XRay] AS [XRay], 
+[DDB_HDC_OFFICEINFO].[CloseDate] AS [CloseDate], 
+[DDB_HDC_OFFICEINFO].[ConversionDate] AS [ConversionDate], 
+[DDB_HDC_OFFICEINFO].[DaysBfHDC] AS [DaysBfHDC], 
+[DDB_HDC_OFFICEINFO].[DaysAfterHDC] AS [DaysAfterHDC], 
+[DDB_HDC_OFFICEINFO].[FirstMthDaysMissed] AS [FirstMthDaysMissed], 
+[DDB_HDC_OFFICEINFO].[LastMthDaysMissed] AS [LastMthDaysMissed], 
+[DDB_HDC_OFFICEINFO].[MergedInto] AS [MergedInto], 
+[DDB_HDC_OFFICEINFO].[Biolase] AS [Biolase], 
+[DDB_HDC_OFFICEINFO].[Accelerate] AS [Accelerate], 
+[DDB_HDC_OFFICEINFO].[Catapult] AS [Catapult], 
+[DDB_HDC_OFFICEINFO].[SqFoot] AS [SqFoot], 
+[DDB_HDC_OFFICEINFO].[PrevName] AS [PrevName], 
+[DDB_HDC_OFFICEINFO].[OfficeEMail] AS [OfficeEMail], 
+[DDB_HDC_OFFICEINFO].[SimpleDental] AS [SimpleDental], 
+[DDB_HDC_OFFICEINFO].[Fortiva] AS [Fortiva], 
+[DDB_HDC_OFFICEINFO].[CareCreditID] AS [CareCreditID], 
+[DDB_HDC_OFFICEINFO].[AllianceData] AS [AllianceData], 
+[DDB_HDC_OFFICEINFO].[FirstMonth] AS [FirstMonth], 
+[DDB_HDC_OFFICEINFO].[OfficeURL] AS [OfficeURL], 
+[DDB_HDC_OFFICEINFO].[SRDO] AS [SRDO], 
+[DDB_HDC_OFFICEINFO].[Latitude] AS [Latitude], 
+[DDB_HDC_OFFICEINFO].[Longitude] AS [Longitude], 
+[DDB_HDC_OFFICEINFO].[FacebookURL] AS [FacebookURL], 
+[DDB_HDC_OFFICEINFO].[CareCreditURL] AS [CareCreditURL], 
+[DDB_HDC_OFFICEINFO].[GooglePlusURL] AS [GooglePlusURL], 
+[DDB_HDC_OFFICEINFO].[GoogleAnalytics] AS [GoogleAnalytics], 
+[DDB_HDC_OFFICEINFO].[DMA] AS [DMA], 
+[DDB_HDC_OFFICEINFO].[DrivingDirections] AS [DrivingDirections], 
+[DDB_HDC_OFFICEINFO].[TwoXTwoXTwo] AS [TwoXTwoXTwo], 
+[DDB_HDC_OFFICEINFO].[SrRA] AS [SrRA], 
+[DDB_HDC_OFFICEINFO].[PCInfo] AS [PCInfo], 
+[DDB_HDC_OFFICEINFO].[NewSrRA] AS [NewSrRA], 
+[DDB_HDC_OFFICEINFO].[NPPrediction] AS [NPPrediction], 
+[DDB_HDC_OFFICEINFO].[PlannedHireDR] AS [PlannedHireDR], 
+[DDB_HDC_OFFICEINFO].[PlannedHireHYG] AS [PlannedHireHYG], 
+[DDB_HDC_OFFICEINFO].[PlannedHireDA] AS [PlannedHireDA], 
+[DDB_HDC_OFFICEINFO].[PlannedHireBA] AS [PlannedHireBA], 
+[DDB_HDC_OFFICEINFO].[PlannedHireOM] AS [PlannedHireOM], 
+[DDB_HDC_OFFICEINFO].[CurrentHireDRExp] AS [CurrentHireDRExp], 
+[DDB_HDC_OFFICEINFO].[CurrentHireDRNewGrad] AS [CurrentHireDRNewGrad], 
+[DDB_HDC_OFFICEINFO].[CurrentHireDR] AS [CurrentHireDR], 
+[DDB_HDC_OFFICEINFO].[CurrentHireHYG] AS [CurrentHireHYG], 
+[DDB_HDC_OFFICEINFO].[CurrentHireDA] AS [CurrentHireDA], 
+[DDB_HDC_OFFICEINFO].[CurrentHireBA] AS [CurrentHireBA], 
+[DDB_HDC_OFFICEINFO].[CurrentHireOM] AS [CurrentHireOM], 
+[DDB_HDC_OFFICEINFO].[CallsFromNewPatients] AS [CallsFromNewPatients], 
+[DDB_HDC_OFFICEINFO].[NewPatientsScheduled] AS [NewPatientsScheduled], 
+[DDB_HDC_OFFICEINFO].[MarketingDetails] AS [MarketingDetails], 
+[DDB_HDC_OFFICEINFO].[MarketingDirectMail] AS [MarketingDirectMail], 
+[DDB_HDC_OFFICEINFO].[MondayOpen] AS [MondayOpen], 
+[DDB_HDC_OFFICEINFO].[MondayClose] AS [MondayClose], 
+[DDB_HDC_OFFICEINFO].[TuesdayOpen] AS [TuesdayOpen], 
+[DDB_HDC_OFFICEINFO].[TuesdayClose] AS [TuesdayClose], 
+[DDB_HDC_OFFICEINFO].[WednesdayOpen] AS [WednesdayOpen], 
+[DDB_HDC_OFFICEINFO].[WednesdayClose] AS [WednesdayClose], 
+[DDB_HDC_OFFICEINFO].[ThursdayOpen] AS [ThursdayOpen], 
+[DDB_HDC_OFFICEINFO].[ThursdayClose] AS [ThursdayClose], 
+[DDB_HDC_OFFICEINFO].[FridayOpen] AS [FridayOpen], 
+[DDB_HDC_OFFICEINFO].[FridayClose] AS [FridayClose], 
+[DDB_HDC_OFFICEINFO].[SaturdayOpen] AS [SaturdayOpen], 
+[DDB_HDC_OFFICEINFO].[SaturdayClose] AS [SaturdayClose], 
+[DDB_HDC_OFFICEINFO].[SundayOpen] AS [SundayOpen], 
+[DDB_HDC_OFFICEINFO].[SundayClose] AS [SundayClose], 
+[DDB_HDC_OFFICEINFO].[ExtendedHours] AS [ExtendedHours], 
+[DDB_HDC_OFFICEINFO].[TotalHoursMonFri] AS [TotalHoursMonFri], 
+[DDB_HDC_OFFICEINFO].[TotalHoursMonSun] AS [TotalHoursMonSun], 
+[DDB_HDC_OFFICEINFO].[DateOf1st40HourWeek] AS [DateOf1st40HourWeek], 
+[DDB_HDC_OFFICEINFO].[ScheduleNotes] AS [ScheduleNotes], 
+[DDB_HDC_OFFICEINFO].[AccessToCareCurrentWeek] AS [AccessToCareCurrentWeek], 
+[DDB_HDC_OFFICEINFO].[AccessToCarePriorWeek] AS [AccessToCarePriorWeek], 
+[DDB_HDC_OFFICEINFO].[AccessToCare2WeeksPrior] AS [AccessToCare2WeeksPrior], 
+[DDB_HDC_OFFICEINFO].[PracticeManagementSoftware] AS [PracticeManagementSoftware], 
+[DDB_HDC_OFFICEINFO].[SpecialtyEndo] AS [SpecialtyEndo], 
+[DDB_HDC_OFFICEINFO].[SpecialtyOralSurgery] AS [SpecialtyOralSurgery], 
+[DDB_HDC_OFFICEINFO].[SpecialtyOrtho] AS [SpecialtyOrtho], 
+[DDB_HDC_OFFICEINFO].[SpecialtyPedo] AS [SpecialtyPedo], 
+[DDB_HDC_OFFICEINFO].[SpecialtyPerio] AS [SpecialtyPerio], 
+[DDB_HDC_OFFICEINFO].[PSRSupported] AS [PSRSupported], 
+[DDB_HDC_OFFICEINFO].[MarketingWebsite] AS [MarketingWebsite], 
+[DDB_HDC_OFFICEINFO].[PSRSupervisor] AS [PSRSupervisor], 
+[DDB_HDC_OFFICEINFO].[FullFeeFor59DollarIncentive] AS [FullFeeFor59DollarIncentive], 
+[DDB_HDC_OFFICEINFO].[PSROnlineAppointmentRequestStatus] AS [PSROnlineAppointmentRequestStatus], 
+[DDB_HDC_OFFICEINFO].[PSRProviderHours] AS [PSRProviderHours], 
+[DDB_HDC_OFFICEINFO].[DMP5YearNetProductionGoal] AS [DMP5YearNetProductionGoal], 
+[DDB_HDC_OFFICEINFO].[DentrixCustomerNumber] AS [DentrixCustomerNumber], 
+[DDB_HDC_OFFICEINFO].[HealthGradesParticipant] AS [HealthGradesParticipant], 
+[DDB_HDC_OFFICEINFO].[CommunicationVendor] AS [CommunicationVendor], 
+[DDB_HDC_OFFICEINFO].[ClinicalSuppliesRepresentative] AS [ClinicalSuppliesRepresentative], 
+[DDB_HDC_OFFICEINFO].[TeamRecruiter] AS [TeamRecruiter], 
+[DDB_HDC_OFFICEINFO].[ProjectManager] AS [ProjectManager], 
+[DDB_HDC_OFFICEINFO].[AffiliationProForma] AS [AffiliationProForma], 
+[DDB_HDC_OFFICEINFO].[AffiliationProFormaEBITDA] AS [AffiliationProFormaEBITDA], 
+[DDB_HDC_OFFICEINFO].[MarketingRepManager] AS [MarketingRepManager], 
+[DDB_HDC_OFFICEINFO].[RSA] AS [RSA], 
+[DDB_HDC_OFFICEINFO].[Exclusions] AS [Exclusions], 
+[DDB_HDC_OFFICEINFO].[IPAddress] AS [IPAddress], 
+[DDB_HDC_OFFICEINFO].[DMPEnrollment] AS [DMPEnrollment], 
+[DDB_HDC_OFFICEINFO].[DNI] AS [DNI], 
+[DDB_HDC_OFFICEINFO].[DAT] AS [DAT], 
+[DDB_HDC_OFFICEINFO].[Landlord] AS [Landlord], 
+[DDB_HDC_OFFICEINFO].[DXOneAPIStatus] AS [DXOneAPIStatus], 
+[DDB_HDC_OFFICEINFO].[DXOneAPIGoLiveDate] AS [DXOneAPIGoLiveDate], 
+[DDB_HDC_OFFICEINFO].[SeniorTeamRecruiter] AS [SeniorTeamRecruiter]
+FROM [dbo].[DDB_HDC_OFFICEINFO] AS [DDB_HDC_OFFICEINFO]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

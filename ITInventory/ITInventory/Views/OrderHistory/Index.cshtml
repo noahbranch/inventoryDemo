@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ITInventory.Models.OrderProduct>
+@{
+    ViewBag.Title = "Order History";
+}
+
+<h2>Order History</h2>
+
+
+
+
+@(Html.Kendo().Grid(Model)
+    .Name("grid")
+            .Columns(column =>
+            {
+                column.Bound(model => model.Product.ProductName).Title("Product");
+                column.Bound(model => model.Quantity).Title("Ordered");
+                column.Bound(model => model.OrderCost).Title("Total Cost").Format("{0:c}");
+                column.Bound(model => model.Product.Vendor.Name).Title("Vendor");
+                column.Bound(model => model.LastEditUser);
+                column.Bound(model => model.LastEditDateTime);
+                column.Template(@<text>@{if(item.CheckedIn == false){
+                                             
+                                                 <input type="button" id="@item.Quantity" name="@item.ProductId" class="checkInOrder" value="Check-In" />
+                                                 <p style="display: none; position: relative; left: -200px; font-size: 10px;">Checked-In</p>
+                }
+                                         else if (item.CheckedIn)
+                                         {
+                                                 <p style="font-size: 16px">Checked-In</p>
+                                         }
+                }</text>);
+                column.Bound(model => model.Id);
+                column.Template(@<text>@Html.ActionLink("Edit", "Edit", new { id = item.Id }) | @Html.ActionLink("Delete", "Delete", new { id = item.Id })</text>).Width(150);
+            })
+            .Scrollable()
+            .Filterable()
+            .Sortable()
+            .HtmlAttributes(new { style = "height: 550px;" })
+            .Pageable(pageable => pageable
+                .Refresh(true)
+                .PageSizes(true)
+                .PageSizes(new int[] { 10, 20, 100 })
+                .ButtonCount(5))
+                )
+<script>
+    
+    $(document).on('click', '.checkInOrder', function () {
+        var checkIn = true;
+        var checkQty = this.id;
+        var productId = this.name;
+        var checkId = this.parentNode.parentNode.nextSibling.innerText;
+
+        $(this).fadeOut(300);
+        $(this.nextElementSibling).delay(300).fadeIn().animate({
+            left: '0px',
+        });
+        $(this.nextElementSibling).animate({
+            fontSize: '16px'
+        })
+
+        this.parentNode.children[1].innerText = "Checked-In"
+        this.disabled = true;
+
+        $.ajax({
+            url: "@Url.Action("Update_OrderConfirm", "OrderHistory")",
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                QtyConfirmed: checkQty,
+                CheckedIn: checkIn,
+                ProductId: productId,
+                CheckId: checkId
+            })
+    })
+    });
+</script>

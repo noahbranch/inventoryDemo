@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OfficeInfoLocalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DDB_HDC_OFFICEINFO">
+    <Key>
+      <PropertyRef Name="RSCDB" />
+    </Key>
+    <Property Name="RSCDB" Type="Int32" Nullable="false" />
+    <Property Name="EpicorID" Type="Int32" />
+    <Property Name="OfficeName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="FormalName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Name="Zip" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+    <Property Name="Corp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SpeedDial" Type="Int16" />
+    <Property Name="OfficeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ConsID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="RA_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="VP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="OM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NewRDO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NewRA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Accounting" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="AP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="AR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Mktg" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Payroll" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="OpenDate" Type="DateTime" Precision="3" />
+    <Property Name="NumDrs" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Press_Ganey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ThriveGoal" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ChairsAvail" Type="Int32" />
+    <Property Name="PotentialChairs" Type="Int32" />
+    <Property Name="TFGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContMargin" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="OfficeClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="G4" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="G5Date" Type="DateTime" Precision="3" />
+    <Property Name="XRay" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="CloseDate" Type="DateTime" Precision="3" />
+    <Property Name="ConversionDate" Type="DateTime" Precision="3" />
+    <Property Name="DaysBfHDC" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="DaysAfterHDC" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="FirstMthDaysMissed" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="LastMthDaysMissed" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="MergedInto" Type="Int32" />
+    <Property Name="Biolase" Type="Int32" />
+    <Property Name="Accelerate" Type="DateTime" Precision="3" />
+    <Property Name="Catapult" Type="DateTime" Precision="3" />
+    <Property Name="SqFoot" Type="Int32" />
+    <Property Name="PrevName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OfficeEMail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SimpleDental" Type="Boolean" />
+    <Property Name="Fortiva" Type="Boolean" />
+    <Property Name="CareCreditID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AllianceData" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FirstMonth" Type="DateTime" Precision="3" />
+    <Property Name="OfficeURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SRDO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Latitude" Type="Decimal" Precision="9" Scale="6" />
+    <Property Name="Longitude" Type="Decimal" Precision="9" Scale="6" />
+    <Property Name="FacebookURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CareCreditURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GooglePlusURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GoogleAnalytics" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DMA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DrivingDirections" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TwoXTwoXTwo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="SrRA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PCInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NewSrRA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NPPrediction" Type="Int32" />
+    <Property Name="PlannedHireDR" Type="Int32" />
+    <Property Name="PlannedHireHYG" Type="Int32" />
+    <Property Name="PlannedHireDA" Type="Int32" />
+    <Property Name="PlannedHireBA" Type="Int32" />
+    <Property Name="PlannedHireOM" Type="Int32" />
+    <Property Name="CurrentHireDRExp" Type="Int32" />
+    <Property Name="CurrentHireDRNewGrad" Type="Int32" />
+    <Property Name="CurrentHireDR" Type="Int32" />
+    <Property Name="CurrentHireHYG" Type="Int32" />
+    <Property Name="CurrentHireDA" Type="Int32" />
+    <Property Name="CurrentHireBA" Type="Int32" />
+    <Property Name="CurrentHireOM" Type="Int32" />
+    <Property Name="CallsFromNewPatients" Type="Int32" />
+    <Property Name="NewPatientsScheduled" Type="Int32" />
+    <Property Name="MarketingDetails" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MarketingDirectMail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MondayOpen" Type="Int32" />
+    <Property Name="MondayClose" Type="Int32" />
+    <Property Name="TuesdayOpen" Type="Int32" />
+    <Property Name="TuesdayClose" Type="Int32" />
+    <Property Name="WednesdayOpen" Type="Int32" />
+    <Property Name="WednesdayClose" Type="Int32" />
+    <Property Name="ThursdayOpen" Type="Int32" />
+    <Property Name="ThursdayClose" Type="Int32" />
+    <Property Name="FridayOpen" Type="Int32" />
+    <Property Name="FridayClose" Type="Int32" />
+    <Property Name="SaturdayOpen" Type="Int32" />
+    <Property Name="SaturdayClose" Type="Int32" />
+    <Property Name="SundayOpen" Type="Int32" />
+    <Property Name="SundayClose" Type="Int32" />
+    <Property Name="ExtendedHours" Type="Boolean" />
+    <Property Name="TotalHoursMonFri" Type="Double" />
+    <Property Name="TotalHoursMonSun" Type="Double" />
+    <Property Name="DateOf1st40HourWeek" Type="DateTime" Precision="3" />
+    <Property Name="ScheduleNotes" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="AccessToCareCurrentWeek" Type="Int32" />
+    <Property Name="AccessToCarePriorWeek" Type="Int32" />
+    <Property Name="AccessToCare2WeeksPrior" Type="Int32" />
+    <Property Name="PracticeManagementSoftware" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SpecialtyEndo" Type="Boolean" />
+    <Property Name="SpecialtyOralSurgery" Type="Boolean" />
+    <Property Name="SpecialtyOrtho" Type="Boolean" />
+    <Property Name="SpecialtyPedo" Type="Boolean" />
+    <Property Name="SpecialtyPerio" Type="Boolean" />
+    <Property Name="PSRSupported" Type="Boolean" />
+    <Property Name="MarketingWebsite" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PSRSupervisor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FullFeeFor59DollarIncentive" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PSROnlineAppointmentRequestStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PSRProviderHours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DMP5YearNetProductionGoal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DentrixCustomerNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HealthGradesParticipant" Type="Boolean" />
+    <Property Name="CommunicationVendor" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ClinicalSuppliesRepresentative" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TeamRecruiter" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ProjectManager" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="AffiliationProForma" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="AffiliationProFormaEBITDA" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MarketingRepManager" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="RSA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Exclusions" Type="Int32" />
+    <Property Name="IPAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DMPEnrollment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DNI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DAT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Landlord" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DXOneAPIStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DXOneAPIGoLiveDate" Type="DateTime" Precision="3" />
+    <Property Name="SeniorTeamRecruiter" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="OfficeInfoLocalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DDB_HDC_OFFICEINFO" EntityType="Self.DDB_HDC_OFFICEINFO" />
+  </EntityContainer>
+</Schema>

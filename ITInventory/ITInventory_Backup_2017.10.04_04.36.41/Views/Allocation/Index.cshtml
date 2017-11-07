@@ -1,0 +1,159 @@
+﻿@model IEnumerable<ITInventory.Models.AllocatedInventory>
+
+@{
+    ViewBag.Title = "Allocation";
+}
+
+<h2>Allocation History</h2>
+    @Html.ActionLink("Click here to allocate inventory to office", "Create", null, new { @class="btn btn-primary", style="color:white" })
+@(Html.Kendo().Grid(Model)
+.Name("grid")
+.Columns(column =>
+    {
+        column.Bound(c => c.OfficeName);
+        column.Bound(c => c.OrderCost).Format("{0:c}");
+        column.Bound(c => c.OrderCost).Format("{0:0.00}").Hidden();
+        column.Bound(c => c.ProductCount).Title("Amt Allocated");
+        column.Bound(c => c.ProductId);
+        column.Bound(c => c.ProductName);
+        column.Bound(c => c.IsSplit).Hidden();
+        column.Bound(c => c.Id).Hidden();
+        column.Bound(c => c.LastEditDateTime).Title("Last Edited").Format("{0:dd/MM/yyyy hh:mm tt}");
+        column.Template(@<text><input type="button" class="returnAllocation" value="Return" /></text>);
+        column.Bound(c => c.SplitId).Hidden();
+    })
+    .HtmlAttributes(new { style = "height: 700px;" })
+    .Scrollable()
+    .Groupable()
+    .Sortable()
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(5))
+
+)
+
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content" style="height:500px;">
+        <header class="w3-container w3-teal">
+            <span onclick="document.getElementById('id01').style.display='none'"
+                  class="w3-button w3-display-topright">&times;</span>
+            <h2>Looks like you're trying to return a split order</h2>
+        </header>
+        <footer class="w3-container w3-teal">
+            <button id="wholeOrder">Return whole order</button>
+            <button id="singleOrder">Return only this instance</button>
+            <button id="cancelReturn">Cancel return</button>
+        </footer>
+    </div>
+</div>
+
+<script>
+
+    var EntityId = null;
+    var SplitId = null;
+
+    $(".returnAllocation").click(function () {
+        var IsAll = this.parentNode.previousSibling.previousSibling.previousSibling.firstChild.checked;
+        EntityId = this.parentNode.previousSibling.previousSibling.innerText;
+        SplitId = this.parentNode.nextSibling.innerText
+
+        if (IsAll == true) {
+            $("#id01").css("display", "block");
+        }
+        else {
+            allocationReturn(undefined, EntityId, OrderCost)
+        }
+    });
+    $("#wholeOrder").click(function () {
+        allocationReturn(SplitId, EntityId)
+    });
+    $("#singleOrder").click(function () {
+        allocationReturn(undefined, EntityId)
+    });
+    $("#cancelReturn").click(function () {
+        $("#id01").css("display", "none");
+        OfficeId = [];
+    })
+
+    function allocationReturn(splitId, entityId, orderCost){
+        $.ajax({
+            url: "@Url.Action("ReturnAllocation", "Allocation")",
+            type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+            Id: entityId,
+            SplitId: splitId
+        }),
+        success: function (result) {
+            if (result.Result)
+                 location.href = "@Url.Action("Index", "Allocation")";
+        }
+    })
+    }
+</script>
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OfficeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManufacturerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VendorId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsSplit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEditDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEditUser)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OfficeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManufacturerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VendorId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsSplit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastEditDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastEditUser)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>*@

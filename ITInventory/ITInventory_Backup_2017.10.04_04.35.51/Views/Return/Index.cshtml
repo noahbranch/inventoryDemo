@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ITInventory.Models.Return>
+@{
+    ViewBag.Title = "Returns";
+}
+
+<h2>Returns</h2>
+
+@(Html.Kendo().Grid(Model)
+    .Name("grid")
+        .Columns(column =>
+        {
+            column.Bound(model => model.AllocationLot.Lot.Product.ProductName).Format("{0:c}");
+           column.Bound(model => model.Id).Hidden();
+        })
+        .Scrollable()
+        .Filterable()
+        .Sortable()
+        .HtmlAttributes(new { style = "height: 550px;" })
+        .Pageable(pageable => pageable
+            .Refresh(true)
+            .PageSizes(true)
+            .PageSizes(new int[] { 10, 20, 100 })
+            .ButtonCount(5))
+            )
+
+<script>
+
+    $(document).on('click', '.returnOrder', function () {
+        var checkIn = true;
+        var checkQty = this.id;
+        var productId = this.name;
+        var checkId = this.parentNode.nextSibling.innerText;
+
+        this.value = "Checked-In"
+        this.disabled = true;
+
+        $.ajax({
+            url: "@Url.Action("CheckIn_Return", "Return")",
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                QtyConfirmed: checkQty,
+                CheckedIn: checkIn,
+                ProductId: productId,
+                CheckId: checkId
+            })
+    })
+    });
+</script>
