@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ITInventoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Allocation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="ProductCount" Type="Int32" Nullable="false" />
+    <Property Name="IsSplit" Type="Boolean" Nullable="false" />
+    <Property Name="LastEditDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastEditUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RSCDB" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="ITInventoryModel.FK_Allocation_Product" FromRole="Allocation" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SKU" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SellPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Weight" Type="Int32" Nullable="false" />
+    <Property Name="WeightUnit" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PackageWeight" Type="Int32" Nullable="false" />
+    <Property Name="PackageHeight" Type="Int32" Nullable="false" />
+    <Property Name="PackageLength" Type="Int32" Nullable="false" />
+    <Property Name="PackageUnits" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="QtyPerPackage" Type="Int32" Nullable="false" />
+    <Property Name="DefaultOrderSize" Type="Int32" Nullable="false" />
+    <Property Name="ManufacturerId" Type="Int32" />
+    <Property Name="VendorId" Type="Int32" Nullable="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="OnOrder" Type="Int32" Nullable="false" />
+    <Property Name="Catalog" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="StockLevel" Type="Int32" Nullable="false" />
+    <Property Name="ReorderThreshold" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="LastOrderedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastEditDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastEditUser" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ListPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="IsKit" Type="Boolean" />
+    <NavigationProperty Name="OrderHistories" Relationship="ITInventoryModel.FK_OrderHistory_Product" FromRole="Product" ToRole="OrderHistory" />
+    <NavigationProperty Name="Allocations" Relationship="ITInventoryModel.FK_Allocation_Product" FromRole="Product" ToRole="Allocation" />
+    <NavigationProperty Name="KitItems" Relationship="ITInventoryModel.FK_KitItem_Product" FromRole="Product" ToRole="KitItem" />
+    <NavigationProperty Name="Manufacturer" Relationship="ITInventoryModel.FK_Product_Manufacturer" FromRole="Product" ToRole="Manufacturer" />
+    <NavigationProperty Name="Vendor" Relationship="ITInventoryModel.FK_Product_Vendor" FromRole="Product" ToRole="Vendor" />
+    <Property Name="OriginalQty" Type="Int32" />
+    <Property Name="KitId" Type="Int32" />
+    <NavigationProperty Name="KitItem" Relationship="ITInventoryModel.FK_Product_KitItem" FromRole="Product" ToRole="KitItem" />
+  </EntityType>
+  <EntityContainer Name="ITInventoryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Allocations" EntityType="Self.Allocation" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="KitItems" EntityType="ITInventoryModel.KitItem" />
+    <EntitySet Name="OrderHistories" EntityType="ITInventoryModel.OrderHistory" />
+    <AssociationSet Name="FK_OrderHistory_Product" Association="ITInventoryModel.FK_OrderHistory_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrderHistory" EntitySet="OrderHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Allocation_Product" Association="ITInventoryModel.FK_Allocation_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Allocation" EntitySet="Allocations" />
+    </AssociationSet>
+    <EntitySet Name="Manufacturers" EntityType="ITInventoryModel.Manufacturer" />
+    <EntitySet Name="Vendors" EntityType="ITInventoryModel.Vendor" />
+    <AssociationSet Name="FK_KitItem_Product" Association="ITInventoryModel.FK_KitItem_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="KitItem" EntitySet="KitItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Manufacturer" Association="ITInventoryModel.FK_Product_Manufacturer">
+      <End Role="Manufacturer" EntitySet="Manufacturers" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Vendor" Association="ITInventoryModel.FK_Product_Vendor">
+      <End Role="Vendor" EntitySet="Vendors" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_KitItem" Association="ITInventoryModel.FK_Product_KitItem">
+      <End Role="KitItem" EntitySet="KitItems" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="KitItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="LastEditDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastEditUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="ITInventoryModel.FK_KitItem_Product" FromRole="KitItem" ToRole="Product" />
+    <NavigationProperty Name="Products" Relationship="ITInventoryModel.FK_Product_KitItem" FromRole="KitItem" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="OrderHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="QtyOrdered" Type="Int32" Nullable="false" />
+    <Property Name="LastEditUser" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LastEditDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Product" Relationship="ITInventoryModel.FK_OrderHistory_Product" FromRole="OrderHistory" ToRole="Product" />
+    <Property Name="IsCheckedIn" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_OrderHistory_Product">
+    <End Type="ITInventoryModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="ITInventoryModel.OrderHistory" Role="OrderHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderHistory">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Allocation_Product">
+    <End Type="ITInventoryModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="ITInventoryModel.Allocation" Role="Allocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Allocation">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Manufacturer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ManufacturerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ManufacturerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ManufacturerPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LastEditUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastEditDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Products" Relationship="ITInventoryModel.FK_Product_Manufacturer" FromRole="Manufacturer" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastEditDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastEditUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="ITInventoryModel.FK_Product_Vendor" FromRole="Vendor" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_KitItem_Product">
+    <End Type="ITInventoryModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="ITInventoryModel.KitItem" Role="KitItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KitItem">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Manufacturer">
+    <End Type="ITInventoryModel.Manufacturer" Role="Manufacturer" Multiplicity="0..1" />
+    <End Type="ITInventoryModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ManufacturerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Vendor">
+    <End Type="ITInventoryModel.Vendor" Role="Vendor" Multiplicity="1" />
+    <End Type="ITInventoryModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="VendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_KitItem">
+    <End Type="ITInventoryModel.KitItem" Role="KitItem" Multiplicity="0..1" />
+    <End Type="ITInventoryModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KitItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="KitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

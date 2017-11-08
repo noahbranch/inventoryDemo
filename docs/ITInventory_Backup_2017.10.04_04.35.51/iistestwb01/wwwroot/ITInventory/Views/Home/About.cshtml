@@ -1,0 +1,10 @@
+﻿@model IEnumerable<ITInventory.Models.Allocation>
+
+@(Html.Kendo().Grid(Model)
+    .Name("grid")
+    .Columns(column =>
+    {
+        column.Bound(m => m.Product.ProductName);
+        column.Bound(m => m.Product.SellPrice);
+    })
+    );

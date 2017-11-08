@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7a95ddb8f71e486da8e494f1299e35cf" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="ITInventoryModel.Allocation" Width="1.5" PointX="7.125" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITInventoryModel.Product" Width="1.5" PointX="3.125" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITInventoryModel.KitItem" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ITInventoryModel.OrderHistory" Width="1.5" PointX="5.375" PointY="4" />
+        <AssociationConnector Association="ITInventoryModel.FK_OrderHistory_Product" />
+        <AssociationConnector Association="ITInventoryModel.FK_Allocation_Product" />
+        <EntityTypeShape EntityType="ITInventoryModel.Manufacturer" Width="1.5" PointX="0.875" PointY="4.25" />
+        <EntityTypeShape EntityType="ITInventoryModel.Vendor" Width="1.5" PointX="7.625" PointY="3" />
+        <AssociationConnector Association="ITInventoryModel.FK_KitItem_Product" />
+        <AssociationConnector Association="ITInventoryModel.FK_Product_Manufacturer" />
+        <AssociationConnector Association="ITInventoryModel.FK_Product_Vendor" />
+        <AssociationConnector Association="ITInventoryModel.FK_Product_KitItem" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

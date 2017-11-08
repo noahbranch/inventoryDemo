@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ITInventoryModelStoreContainer" CdmEntityContainer="ITInventoryEntities">
+    <EntitySetMapping Name="AllocationOffices">
+      <EntityTypeMapping TypeName="ITInventoryModel.AllocationOffice">
+        <MappingFragment StoreEntitySet="AllocationOffice">
+          <ScalarProperty Name="LastEditDateTime" ColumnName="LastEditDateTime" />
+          <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="AllocationId" ColumnName="AllocationId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kits">
+      <EntityTypeMapping TypeName="ITInventoryModel.Kit">
+        <MappingFragment StoreEntitySet="Kit">
+          <ScalarProperty Name="LastEditDateTime" ColumnName="LastEditDateTime" />
+          <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
+          <ScalarProperty Name="KitName" ColumnName="KitName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KitProducts">
+      <EntityTypeMapping TypeName="ITInventoryModel.KitProduct">
+        <MappingFragment StoreEntitySet="KitProduct">
+          <ScalarProperty Name="LastEditDateTime" ColumnName="LastEditDateTime" />
+          <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="KitId" ColumnName="KitId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lots">
+      <EntityTypeMapping TypeName="ITInventoryModel.Lot">
+        <MappingFragment StoreEntitySet="Lot">
+          <ScalarProperty Name="LastEditDateTime" ColumnName="LastEditDateTime" />
+          <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="ITInventoryModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="LastEditDateTime" ColumnName="LastEditDateTime" />
+          <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
+          <ScalarProperty Name="Checkedin" ColumnName="Checkedin" />
+          <ScalarProperty Name="Submitted" ColumnName="Submitted" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="ITInventoryModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
+          <ScalarProperty Name="LastEditDateTime" ColumnName="LastEditDateTime" />
+          <ScalarProperty Name="LastOrderedDate" ColumnName="LastOrderedDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="KitId" ColumnName="KitId" />
+          <ScalarProperty Name="IsKit" ColumnName="IsKit" />
+          <ScalarProperty Name="ReorderThreshold" ColumnName="ReorderThreshold" />
+          <ScalarProperty Name="OriginalQty" ColumnName="OriginalQty" />
+          <ScalarProperty Name="StockLevel" ColumnName="StockLevel" />
+          <ScalarProperty Name="NewStockLevel" ColumnName="NewStockLevel" />
+          <ScalarProperty Name="Catalog" ColumnName="Catalog" />
+          <ScalarProperty Name="OnOrder" ColumnName="OnOrder" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+          <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
+          <ScalarProperty Name="DefaultOrderSize" ColumnName="DefaultOrderSize" />
+          <ScalarProperty Name="QtyPerPackage" ColumnName="QtyPerPackage" />
+          <ScalarProperty Name="PackageUnits" ColumnName="PackageUnits" />
+          <ScalarProperty Name="PackageLength" ColumnName="PackageLength" />
+          <ScalarProperty Name="PackageHeight" ColumnName="PackageHeight" />
+          <ScalarProperty Name="PackageWeight" ColumnName="PackageWeight" />
+          <ScalarProperty Name="WeightUnit" ColumnName="WeightUnit" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="SKU" ColumnName="SKU" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Returns">
+      <EntityTypeMapping TypeName="ITInventoryModel.Return">
+        <MappingFragment StoreEntitySet="Returns">
+          <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
+          <ScalarProperty Name="LastEditDateTime" ColumnName="LastEditDateTime" />
+          <ScalarProperty Name="InInventory" ColumnName="InInventory" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="AllocationLotId" ColumnName="AllocationLotId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vendors">
+      <EntityTypeMapping TypeName="ITInventoryModel.Vendor">
+        <MappingFragment StoreEntitySet="Vendor">
+          <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
+          <ScalarProperty Name="LastEditDateTime" ColumnName="LastEditDateTime" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Allocations">
+      <EntityTypeMapping TypeName="ITInventoryModel.Allocation">
+        <MappingFragment StoreEntitySet="Allocation">
+          <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
+          <ScalarProperty Name="LastEditDateTime" ColumnName="LastEditDateTime" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AllocationLots">
+      <EntityTypeMapping TypeName="ITInventoryModel.AllocationLot">
+        <MappingFragment StoreEntitySet="AllocationLot">
+          <ScalarProperty Name="LastEditDateTime" ColumnName="LastEditDateTime" />
+          <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="LotId" ColumnName="LotId" />
+          <ScalarProperty Name="AllocationId" ColumnName="AllocationId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderProducts">
+      <EntityTypeMapping TypeName="ITInventoryModel.OrderProduct">
+        <MappingFragment StoreEntitySet="OrderProduct">
+          <ScalarProperty Name="LastEditDateTime" ColumnName="LastEditDateTime" />
+          <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
+          <ScalarProperty Name="CheckedIn" ColumnName="CheckedIn" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="OrderCost" ColumnName="OrderCost" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

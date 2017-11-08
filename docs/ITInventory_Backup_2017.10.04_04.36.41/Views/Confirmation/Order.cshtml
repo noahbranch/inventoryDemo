@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ITInventory.Models.OrderProduct>
+
+@{
+    ViewBag.Title = "Order";
+}
+
+<h2>Order</h2>
+<div class="row">
+    <div class="col-md-7">
+        @(Html.Kendo().Grid(Model)
+        .Name("grid-order")
+        .Columns(column =>
+        {
+            column.Bound(c => c.Product.ProductName).Width(50);
+            column.Bound(c => c.Quantity).Width(50);
+            column.Bound(c => c.LastEditUser).Width(50);
+        })
+        .HtmlAttributes(new { @class = "orderGrid" })
+        .Scrollable()
+        )
+    </div>
+    <div class="col-md-4">
+        <button id="finalizeOrder" class="btn btn-primary">Order these items</button>
+    </div>
+</div>
+<script>
+    $("#finalizeOrder").click(function(){
+        $.ajax({
+            url: "@Url.Action("ConfirmOrder", "Home")",
+            type: 'POST',
+        contentType: 'application/json',
+        success: function(result){
+            if(result.Result){
+                location.href = "@Url.Action("Index", "Home")";
+            }
+        }
+    })
+    })
+</script>

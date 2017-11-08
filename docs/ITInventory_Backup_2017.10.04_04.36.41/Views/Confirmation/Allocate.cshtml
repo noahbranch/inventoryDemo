@@ -1,0 +1,56 @@
+﻿@model ITInventory.Models.DDB_HDC_OFFICEINFO
+
+@{
+    ViewBag.Title = "Allocate";
+}
+
+<h2>Allocate</h2>
+<div class="row">
+    <div class="col-md-7">
+   @(Html.Kendo().Grid<ITInventory.Models.OrdersViewModel>()
+    .Name("grid-order")
+    .Columns(column =>
+    {
+        column.Bound(c => c.ProductName).Width(50);
+        column.Bound(c => c.Quantity).Width(50);
+    })
+    .HtmlAttributes(new { @class = "orderGrid" })
+    .Scrollable()
+    .DataSource(dataSource => dataSource
+    .Ajax()
+    .ServerOperation(false)
+    .Model(model => model.Id(p => p.Id))
+    .Read(read => read.Action("Get_Order", "Confirmation").Type(HttpVerbs.Get))
+    .PageSize(100)))
+    </div>
+@using (Html.BeginForm())
+{
+    <div class="col-md-4">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary col-md-5" id="singleAll">Single Allocation</button>
+            <button type="button" class="btn btn-primary col-md-5" id="multiAll">Split Allocation</button>
+        </div>
+        <div class="col-md-10" id="multiSelect">
+            @Html.DropDownListFor(model => model.RSCDB, ViewBag.OfficeName as SelectList, htmlAttributes: new { style = "width: 300px;", placeholder = "Start typing office name", multiple = "multiple" })
+        </div>
+        <div class="col-md-10" id="singleSelect">
+            @Html.DropDownListFor(model => model.RSCDB, ViewBag.OfficeName as SelectList, htmlAttributes: new { style = "width: 300px;", placeholder = "Start typing office name" })
+        </div>
+    </div>
+}
+</div>
+
+<script>
+    $("#multiSelect").kendoMultiSelect();
+    $("#singleSelect").kendoComboBox();
+
+    $("#singleAll").click(function () {
+        $("#singleSelect").show();
+        $("#multiSelect").hide();
+    });
+
+    $("#multiAll").click(function () {
+        $("#multiSelect").show();
+        $("#singleSelect").hide();
+    });
+</script>

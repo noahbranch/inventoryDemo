@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ITInventory.Models.Allocation>
+
+@{
+    ViewBag.Title = "Allocation";
+}
+
+<h2>Allocation History</h2>
+@(Html.Kendo().Grid<ITInventory.Models.AllocatedInventory>()
+.Name("grid")
+.Columns(column =>
+    {
+        column.Bound(r => r.OfficeName);
+        column.Bound(r => r.LastEditDateTime);
+    })
+    .HtmlAttributes(new { style = "height: 700px;" })
+    .Scrollable()
+    .Sortable()
+    .ClientDetailTemplateId("template")
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .ServerOperation(false)
+        .Model(model => model.Id(p => p.Id))
+        .Read(read => read.Action("Allocation_Read", "Allocation").Type(HttpVerbs.Get)))
+    .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(5))
+
+)
+
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content" style="height:500px;">
+        <header class="w3-container w3-teal">
+            <span onclick="document.getElementById('id01').style.display='none'"
+                  class="w3-button w3-display-topright">&times;</span>
+            <h2>Looks like you're trying to return a split order</h2>
+        </header>
+        <footer class="w3-container w3-teal">
+            <button id="wholeOrder">Return whole order</button>
+            <button id="singleOrder">Return only this instance</button>
+            <button id="cancelReturn">Cancel return</button>
+        </footer>
+    </div>
+</div>
+
+<script id="template" type="text/kendo-tmpl">
+
+    @(Html.Kendo().Grid<ITInventory.Models.AllocationViewModel>()
+                .Name("grid_#=Id#")
+                .Columns(c =>
+                    {
+                        c.Bound(x => x.LotId);
+                        c.Bound(x => x.ProductId);
+                        c.Bound(x => x.ProductName);
+                        c.Bound(x => x.Quantity);
+                        c.Bound(x => x.SellPrice).Format("{0:c}");
+                        c.Template(@<text></text>).ClientTemplate("<a href='/Allocation/Details/\\#= Id \\# ' class='btn btn-primary'>Return</a>");
+                    })
+                    .DataSource(datasource => datasource
+                        .Ajax()
+                        .PageSize(5)
+                        .Read(read => read.Action("Create_Allocate", "Allocation", new { Id = "#=Id#" }).Type(HttpVerbs.Get))
+                    )
+                    .Pageable()
+                    .Sortable()
+                    .ToClientTemplate()
+                    )
+
+</script>
+
+<script>
+
+    var EntityId = null;
+    var SplitId = null;
+
+    $(".returnAllocation").click(function () {
+        var IsAll = this.parentNode.previousSibling.previousSibling.previousSibling.firstChild.checked;
+        EntityId = this.parentNode.previousSibling.previousSibling.innerText;
+        SplitId = this.parentNode.nextSibling.innerText
+
+        if (IsAll == true) {
+            $("#id01").css("display", "block");
+        }
+        else {
+            allocationReturn(undefined, EntityId, OrderCost)
+        }
+    });
+    $("#wholeOrder").click(function () {
+        allocationReturn(SplitId, EntityId)
+    });
+    $("#singleOrder").click(function () {
+        allocationReturn(undefined, EntityId)
+    });
+    $("#cancelReturn").click(function () {
+        $("#id01").css("display", "none");
+        OfficeId = [];
+    })
+
+    function allocationReturn(splitId, entityId, orderCost){
+        $.ajax({
+            url: "@Url.Action("ReturnAllocation", "Allocation")",
+            type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+            Id: entityId,
+            SplitId: splitId
+        }),
+        success: function (result) {
+            if (result.Result)
+                 location.href = "@Url.Action("Index", "Allocation")";
+        }
+    })
+    }
+</script>

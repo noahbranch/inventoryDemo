@@ -1,0 +1,161 @@
+﻿
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@ViewBag.Title</title>
+        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    	<!--This CSS entry was added by the Telerik VS Extensions for compatibility reasons-->
+	<link href="@Url.Content("~/Content/kendo.compatibility.css")" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2017.2.621/styles/kendo.common-fiori.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2017.2.621/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2017.2.621/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2017.2.621/styles/kendo.fiori.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/w3.css" rel="stylesheet" />
+	<link href="https://kendo.cdn.telerik.com/2017.2.621/styles/kendo.dataviz.fiori.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky" rel="stylesheet">
+	<script src="https://kendo.cdn.telerik.com/2017.2.621/js/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.kendo.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2017.2.621/js/angular.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2017.2.621/js/jszip.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2017.2.621/js/kendo.all.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2017.2.621/js/kendo.aspnetmvc.min.js"></script>
+<link href="@Url.Content("~/Content/font-awesome-4.7.0/css/font-awesome.css")" rel="stylesheet" />
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+</head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("IT Inventory", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <nav>
+                        <ul id="menu">
+                            <li id="home" class="menuItem">@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li class="menuItem">@Html.ActionLink("Order History", "Index", "OrderHistory")</li>
+                            <li class="menuItem">@Html.ActionLink("Vendors", "Index", "Vendor")</li>
+                            <li class="dropdown menuItem">
+                                <p>@Html.ActionLink("Products", "Index", "Product")<i id="downArrow" class="fa fa-sort-desc" aria-hidden="false"></i></p>
+                                <div class="dropdown-content">
+                                    @Html.ActionLink("Products", "Index", "Product")
+                                    @Html.ActionLink("Categories", "Index", "Category")
+                                </div>
+                            </li>
+                            <li class="dropdown menuItem"><p>@Html.ActionLink("Allocation", "Index", "Allocation")<i id="downArrow" class="fa fa-sort-desc" aria-hidden="false"></i></p>
+                            <div class="dropdown-content">
+                                @Html.ActionLink("Allocation History", "Index", "Allocation")
+                                @Html.ActionLink("Returns", "Index", "Return")
+                            </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @if (IsSectionDefined("featured"))
+            {
+                RenderSection("featured", required: false);
+            }
+            @if (IsSectionDefined("scripts")){
+                RenderSection("scripts", required: false);
+            }
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer style="margin: auto; padding-top: 20px; padding-left: 100px;">
+            @if (HDUtilities.RoleProvider.IsUserInSiteRole("Admin", false))
+            {
+                <div id="masqueradeDiv">
+                    @if (HDUtilities.Masquerade.IsMasquerading())
+                    {
+                        @Html.Label("Masquerading As:", new { style = "padding-right:4px;" })
+                        <text>@HDUtilities.UserInformation.GetCurrentUserFullName()</text>
+                        <input type="button" id="masqueradeSwitchBack" value="Switch Back" class="k-button" onclick="SwitchBack('@(Url.Action("MasqueradeSwitchBack", "Home"))')" style="margin-left: 16px;" />
+                    }
+                    else
+                    {
+                        @Html.Label("Masquerade As:", new { style = "padding-right:4px;" })
+                        <input class="k-textbox" id="Masquerade" name="Masquerade" onkeyup="MasqueradeKeyPress()">
+                        <input type="button" id="masqueradeGo" value="Go" class="k-button" onclick="MasqueradeAs('@(Url.Action("Masquerade", "Home"))')" />
+                    }
+                </div>
+            }
+        </footer>
+        <div class="modalSpin"></div>
+        <audio id="audio">
+            <source src="~/Images/skullsound2.mp3" type="audio/mpeg" />
+        </audio>
+    </body>
+</html>
+
+<script>
+    $(function () {
+        setNavigation();
+    });
+    function setNavigation() {
+        var path = window.location.pathname;
+        path = path.replace(/\/$/, "");
+        path = decodeURIComponent(path);
+
+        $(".menuItem a").each(function () {
+            var href = $(this).attr('href');
+            if (path.substring(0, href.length) === href && path.substring(0, href.length) !== "/") {
+                $(this).closest('li').addClass('active');
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $("#menu").kendoMenu();
+    });
+
+
+
+    function MasqueradeKeyPress() {
+        if (event.keyCode == 13) {
+            $("#masqueradeGo").trigger("click");
+        }
+    }
+
+    function MasqueradeAs(url) {
+        var masqueradeUser = $("#Masquerade").val();
+
+        $.get(url + '?masqueradeUser=' + masqueradeUser, function (data) {
+            location.reload();
+        });
+    }
+
+    function SwitchBack(url) {
+        $.get(url, function (data) {
+            var oldURL = $("#oldUrl").val();
+
+            if (oldURL != undefined && oldURL != '') {
+                window.location.href = oldURL;
+            }
+            else {
+                location.reload();
+            }
+        });
+    }
+
+    var secret = "38384040373937396665";
+    var input = "";
+    var timer;
+    var mode = false;
+    $(document).keyup(function (e) {
+        input += e.which;
+        clearTimeout(timer);
+        timer = setTimeout(function () { input = ""; }, 1000);
+        check_input();
+    });
+    function check_input() {
+        if (input == secret) {
+            var sound = document.getElementById("audio");
+        }
+    }
+</script>

@@ -1,0 +1,76 @@
+﻿@model ITInventory.Models.Product
+@{
+    ViewBag.Title = "Create new kit";
+}
+
+<h2>Create new kit - <input type="text" placeholder="Kit Name" id="kitName" /></h2>
+
+    <div class="form-group">
+    @Html.Label("Product Names", new { @class = "control-label col-md-2" })
+        <div class="col-md-5">
+                        @Html.DropDownListFor(model => model.Id, ViewBag.Products as SelectList, htmlAttributes: new { style = "width: 300px;", placeholder = "Start typing product name", @class = "kitproduct" })
+            <input type="number" placeholder="Qty" id="kitQty"/>
+            <a id="addProduct"><span class="fa fa-plus-circle fa-2x"></span></a>
+        </div>
+        <div class="col-md-5" id="kitPreview">
+            <h3>Kit Preview</h3>
+            <ul id="productList">
+            </ul>
+        </div>
+        <input type="button" value="Create Kit" id="createKit" />
+    </div>
+<script>
+    $(".kitproduct").kendoComboBox();
+
+    var productIdList = [];
+    var productQtyList = [];
+
+    $("#addProduct").click(function () {
+        var selectedProductId = $("#Id")[0].value;
+        var productName = $("#Id")[0].selectedOptions[0].innerText;
+        var kitQty = $("#kitQty")[0].value;
+
+        if (productIdList.indexOf(selectedProductId) != -1) {
+            alert("You already included that product!")
+        }
+        else {
+            productIdList.push(selectedProductId);
+            productQtyList.push(kitQty);
+            $("#productList").append('<li>' + productName + '('+ kitQty +')<a id =' + selectedProductId + ' onclick="remove(this.id)"><span class="fa fa-times-circle"></span></a></li>')
+        }
+
+    });
+    $("#removeProduct").click(function(){
+        $("#productList li").last().remove();
+    });
+
+    function remove(id) {
+        var x = productIdList.indexOf(id);
+        if (x != -1) {
+            productIdList.splice(x, 1);
+            productQtyList.splice(x, 1);
+            $("#productList li").eq(x).remove();
+        }
+    }
+    
+    data = {};
+
+    $("#createKit").click(function () {
+        data.KitName = $("#kitName")[0].value;
+        data.productList = productIdList;
+        data.orderQty = productQtyList;
+        $.ajax({
+            url: "@Url.Action("CreateKit", "Product")",
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: "json",
+        success: function(result){
+            if(result.Result){
+                location.href = "@Url.Action("Index", "Product")";
+            }
+        }
+    })
+    })
+
+</script>

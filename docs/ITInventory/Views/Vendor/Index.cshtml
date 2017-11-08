@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ITInventory.Models.Vendor>
+
+@{
+    ViewBag.Title = "Vendors";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@(Html.Kendo().Grid(Model)
+.Name("grid")
+.Columns(column =>
+    {
+        column.Bound(c => c.Name);
+        column.Bound(c => c.VendorContact);
+        column.Bound(c => c.Email);
+        column.Bound(c => c.PhoneNumber);
+        column.Template(@<text>@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class= "editButton" }) | @Html.ActionLink("Details", "Details", new { id = item.Id }) | @Html.ActionLink("Delete", "Delete", new { id = item.Id })</text>);
+    })
+    .HtmlAttributes(new { style = "height: 700px;" })
+    .Scrollable()
+    .Groupable()
+    .Sortable()
+    .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .PageSizes(new int[] { 10, 20, 100 })
+        .ButtonCount(5))
+
+)
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsVendor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEditDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEditUser)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsVendor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastEditDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastEditUser)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>*@

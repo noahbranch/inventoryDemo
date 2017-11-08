@@ -1,0 +1,109 @@
+﻿@model ITInventory.Models.DDB_HDC_OFFICEINFO
+
+@{
+    ViewBag.Title = "Allocate";
+}
+
+<h2>Allocate</h2>
+<div class="row">
+    <div class="col-md-7">
+   @(Html.Kendo().Grid<ITInventory.Models.OrdersViewModel>()
+    .Name("grid-order")
+    .Columns(column =>
+    {
+        column.Bound(c => c.ProductName).Width(50);
+        column.Bound(c => c.Quantity).Width(50);
+    })
+    .HtmlAttributes(new { @class = "orderGrid" })
+    .Scrollable()
+    .DataSource(dataSource => dataSource
+    .Ajax()
+    .ServerOperation(false)
+    .Model(model => model.Id(p => p.Id))
+    .Read(read => read.Action("Get_Order", "Confirmation").Type(HttpVerbs.Get))
+    .PageSize(100)))
+    </div>
+@using (Html.BeginForm())
+{
+    <div class="col-md-4">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary col-md-5" id="singleAll">Single Allocation</button>
+                <button type="button" class="btn btn-primary col-md-5" id="multiAll">Split Allocation</button>
+            </div>
+        <div class="col-md-10 dropdownOffice" id="multiSelect">
+            <h3>Offices</h3>
+            @Html.DropDownListFor(model => model.RSCDB, ViewBag.OfficeName as SelectList, "", htmlAttributes: new { id = "multiSel", style = "width: 300px;", placeholder = "Start typing office name", multiple = "multiple" })
+        </div>
+        <div class="col-md-10 dropdownOffice" id="singleSelect">
+            <h3>Office</h3>
+            @Html.DropDownListFor(model => model.RSCDB, ViewBag.OfficeName as SelectList, "", htmlAttributes: new { id = "singleSel", style = "width: 300px;", placeholder = "Start typing office name" })
+        </div>
+        <div class="col-md-12 dropdownOffice" id="finAllocate">
+            <button class="btn btn-primary col-md-10" id="finalizeAllocate" type="button">Allocate</button>
+        </div>
+    </div>
+}
+</div>
+
+<script>
+    $("#multiSel").kendoMultiSelect({
+        filter: "contains"
+    });
+    $("#singleSel").kendoComboBox({
+        filter: "contains"
+    });
+
+    $("#singleAll").click(function () {
+        if ($("#singleSelect").is(":visible")) {
+            $("#singleSelect").hide();
+            $("#finAllocate").hide();
+        }
+        else{
+            $("#singleSelect").show();
+            $("#finAllocate").show();
+            $("#multiSelect").hide();
+        }
+    });
+
+    $("#multiAll").click(function () {
+        if ($("#multiSelect").is(":visible")) {
+            $("#multiSelect").hide();
+            $("#finAllocate").hide();
+        }
+        else {
+            $("#multiSelect").show();
+            $("#finAllocate").show();
+            $("#singleSelect").hide();
+        }
+    });
+
+    var officeIds = [];
+    var split = false;
+    var productId = [];
+
+    $(document).on('click', '#finalizeAllocate', function () {
+
+        if ($("#singleSelect").is(":visible")) {
+            officeIds.push($("#singleSel").val())
+            split = false;
+        }
+        else if ($("#multiSelect").is(":visible")) {
+            officeIds = $("#multiSel").val();
+            split = true;
+        }
+
+        $.ajax({
+            url: "@Url.Action("AllocateProducts", "Allocation")",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+                RSCDB: officeIds,
+                IsSplit: split
+            }),
+            success: function (result) {
+                if (result.Result)
+                    location.href = "@Url.Action("Index", "Allocation")";
+            }
+        });
+    });
+</script>

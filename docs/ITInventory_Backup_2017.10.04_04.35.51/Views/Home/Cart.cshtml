@@ -1,0 +1,12 @@
+﻿@model IEnumerable<ITInventory.Models.OrderProduct>
+
+@{
+    
+}
+
+@foreach (var x in Model.Where(r => r.Order.Submitted == false))
+{
+    <p>@x.Product.ProductName</p>
+}
+
+<input type="button" name="order" value="Order" />
